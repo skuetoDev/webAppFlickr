@@ -35,6 +35,13 @@ build/
 
 # Database
 *.db
+
+#for secrets keys
+application-local.properties
+*.env
+secrets.properties
+
+
 #For Frontend
 node_modules/
 npm-debug.log*
