@@ -1,4 +1,4 @@
-package com.example.flickr_api.models;
+package com.example.flickr_api.Models;
 
 public class FlickrPhoto {
     private String id;
