@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/flickr-api/flickr-api.iml" filepath="$PROJECT_DIR$/flickr-api/flickr-api.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/webAppFlickr.iml" filepath="$PROJECT_DIR$/.idea/webAppFlickr.iml" />
     </modules>
   </component>
