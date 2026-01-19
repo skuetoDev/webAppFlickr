@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/photos")
+@RequestMapping("/api/images")
 @CrossOrigin(origins = "*") // Permitir CORS para desarrollo
 public class FlickrController {
 
@@ -22,8 +22,8 @@ public class FlickrController {
 
     /**
      * Busca fotos por término
-     * GET /api/photos/search?q=cats
-     * GET /api/photos/search?q=cats&page=1&perPage=20
+     * GET /api/images/search?q=cats
+     * GET /api/images/search?q=cats&page=1&perPage=20
      */
     @GetMapping("/search")
     public ResponseEntity<List<FlickrPhoto>> searchPhotos(
@@ -41,7 +41,7 @@ public class FlickrController {
 
     /**
      * Obtiene información de una foto específica
-     * GET /api/photos/{id}
+     * GET /api/images/{id}
      */
     @GetMapping("/{id}")
     public ResponseEntity<FlickrPhoto> getPhoto(@PathVariable String id) {

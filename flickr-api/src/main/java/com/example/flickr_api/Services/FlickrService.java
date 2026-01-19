@@ -27,21 +27,13 @@ public class FlickrService {
 
     private final RestTemplate restTemplate = new RestTemplate();
 
-    /**
-     * Busca fotos en Flickr según el término de búsqueda
-     * @param searchTerm término a buscar
-     * @return lista de FlickrPhoto
-     */
-    public List<FlickrPhoto> searchPhotos(String searchTerm) {
-        return searchPhotos(searchTerm, 1, 10);
-    }
 
     /**
      * Busca fotos en Flickr con paginación
      * @param searchTerm término a buscar
      * @param page número de página
      * @param perPage resultados por página
-     * @return lista de FlickrPhoto
+     * @return lista de FlickrPhoto y si no hay fotos o cualquier otro error, un Array vacío
      */
     public List<FlickrPhoto> searchPhotos(String searchTerm, int page, int perPage) {
         // Construir URL con UriComponentsBuilder para mejor manejo de parámetros
@@ -84,9 +76,11 @@ public class FlickrService {
             System.out.println("Fotos encontradas: " + response.getPhotos().getPhotoList().size());
             System.out.println("Total disponible: " + response.getPhotos().getTotal());
 
-            return response.getPhotos().getPhotoList().stream()
-                    .map(this::convertToFlickrPhoto)
-                    .collect(Collectors.toList());
+            List<FlickrPhoto> resultado = new ArrayList<>();
+            for (Photo photo : response.getPhotos().getPhotoList()) {
+                resultado.add(convertToFlickrPhoto(photo));
+            }
+            return resultado;
 
         } catch (Exception e) {
             System.err.println("Error al buscar fotos: " + e.getMessage());

@@ -1,11 +1,14 @@
 package com.example.flickr_api.Models;
 
+import com.example.flickr_api.dto.Photo;
+
 public class FlickrPhoto {
     private String id;
     private String title;
     private String thumbnailUrl;
     private String imageUrl;
     private String author;
+
 
     public FlickrPhoto() {
     }
