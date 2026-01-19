@@ -16,31 +16,16 @@ public class FlickrResponse {
         return photos;
     }
 
-    public void setPhotos(Photos photos) {
-        this.photos = photos;
-    }
-
     public String getStat() {
         return stat;
-    }
-
-    public void setStat(String stat) {
-        this.stat = stat;
     }
 
     public Integer getCode() {
         return code;
     }
 
-    public void setCode(Integer code) {
-        this.code = code;
-    }
-
     public String getMessage() {
         return message;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
-    }
 }
