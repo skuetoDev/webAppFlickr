@@ -1,17 +1,11 @@
 package com.example.flickr_api.Models;
 
-import com.example.flickr_api.dto.Photo;
-
 public class FlickrPhoto {
-    private String id;
-    private String title;
-    private String thumbnailUrl;
-    private String imageUrl;
-    private String author;
-
-
-    public FlickrPhoto() {
-    }
+    private final String id;
+    private final String title;
+    private final String thumbnailUrl;
+    private final String imageUrl;
+    private final String author;
 
     public FlickrPhoto(String id, String title, String thumbnailUrl, String imageUrl, String author) {
         this.id = id;
@@ -26,41 +20,24 @@ public class FlickrPhoto {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
 
     public String getThumbnailUrl() {
         return thumbnailUrl;
-    }
-
-    public void setThumbnailUrl(String thumbnailUrl) {
-        this.thumbnailUrl = thumbnailUrl;
     }
 
     public String getImageUrl() {
         return imageUrl;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
 
     public String getAuthor() {
         return author;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
-    }
 
     @Override
     public String toString() {

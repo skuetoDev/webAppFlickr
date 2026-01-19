@@ -18,16 +18,8 @@ public class PhotoSizesResponse {
         return sizes;
     }
 
-    public void setSizes(Sizes sizes) {
-        this.sizes = sizes;
-    }
-
     public String getStat() {
         return stat;
-    }
-
-    public void setStat(String stat) {
-        this.stat = stat;
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -48,33 +40,18 @@ public class PhotoSizesResponse {
             return canBlog;
         }
 
-        public void setCanBlog(int canBlog) {
-            this.canBlog = canBlog;
-        }
-
         public int getCanPrint() {
             return canPrint;
-        }
-
-        public void setCanPrint(int canPrint) {
-            this.canPrint = canPrint;
         }
 
         public int getCanDownload() {
             return canDownload;
         }
 
-        public void setCanDownload(int canDownload) {
-            this.canDownload = canDownload;
-        }
-
         public List<Size> getSizeList() {
             return sizeList;
         }
 
-        public void setSizeList(List<Size> sizeList) {
-            this.sizeList = sizeList;
-        }
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -90,48 +67,25 @@ public class PhotoSizesResponse {
             return label;
         }
 
-        public void setLabel(String label) {
-            this.label = label;
-        }
-
         public int getWidth() {
             return width;
-        }
-
-        public void setWidth(int width) {
-            this.width = width;
         }
 
         public int getHeight() {
             return height;
         }
 
-        public void setHeight(int height) {
-            this.height = height;
-        }
-
         public String getSource() {
             return source;
-        }
-
-        public void setSource(String source) {
-            this.source = source;
         }
 
         public String getUrl() {
             return url;
         }
 
-        public void setUrl(String url) {
-            this.url = url;
-        }
-
         public String getMedia() {
             return media;
         }
 
-        public void setMedia(String media) {
-            this.media = media;
-        }
     }
 }
