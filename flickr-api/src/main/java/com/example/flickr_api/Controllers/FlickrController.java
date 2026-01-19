@@ -1,6 +1,7 @@
 package com.example.flickr_api.Controllers;
 
 import com.example.flickr_api.Models.FlickrPhoto;
+import com.example.flickr_api.Models.FlickrPhotoInfo;
 import com.example.flickr_api.Services.FlickrService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -44,8 +45,8 @@ public class FlickrController {
      * GET /api/images/{id}
      */
     @GetMapping("/{id}")
-    public ResponseEntity<FlickrPhoto> getPhoto(@PathVariable String id) {
-        FlickrPhoto photo = flickrService.getPhotoInfo(id);
+    public ResponseEntity<FlickrPhotoInfo> getPhoto(@PathVariable String id) {
+        FlickrPhotoInfo photo = flickrService.getPhotoInfo(id);
 
         if (photo == null) {
             return ResponseEntity.notFound().build();
