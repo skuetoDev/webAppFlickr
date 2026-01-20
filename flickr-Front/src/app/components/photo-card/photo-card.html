@@ -1,0 +1,28 @@
+<article class="photo-card" [class.loaded]="imageLoaded">
+      <div class="photo-wrapper">
+        <img
+          [src]="photo.thumbnailUrl || photo.imageUrl"
+          [alt]="photo.title"
+          class="photo-image"
+          (load)="onImageLoad()"
+          (error)="onImageError($event)"
+          loading="lazy"
+        />
+        <div class="photo-overlay">
+          <app-button 
+            variant="primary" 
+            size="md"
+            (onClick)="openPhoto.emit(photo)"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-icon">
+              <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+            </svg>
+            Abrir
+          </app-button>
+        </div>
+      </div>
+      <div class="photo-info">
+        <h3 class="photo-title" [title]="photo.title">{{ photo.title || 'Sin título' }}</h3>
+        <p class="photo-author">por {{ photo.author || 'Desconocido' }}</p>
+      </div>
+    </article>
