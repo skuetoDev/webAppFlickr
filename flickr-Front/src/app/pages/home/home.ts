@@ -36,7 +36,7 @@ export class Home {
   }
 
   handleSearch(query: string): void {
-    if (query === this.currentQuery && this.photos.length > 0) return;
+    if (query === this.currentQuery && this.photos.length > 0 && !this.loading) return;
 
     this.currentQuery = query;
     this.currentPage = 1;

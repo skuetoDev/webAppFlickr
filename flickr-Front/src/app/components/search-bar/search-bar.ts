@@ -16,22 +16,33 @@ export class SearchBar {
   @Output() search = new EventEmitter<string>();
 
   onSubmit(): void {
-    if (this.searchTerm.trim()) {
-      this.search.emit(this.searchTerm.trim());
+    if (this.searchTimeout) {
+      clearTimeout(this.searchTimeout);
+      this.searchTimeout = null;
+    }
+
+    const trimmedTerm = this.searchTerm.trim();
+
+    if (trimmedTerm) {
+      this.search.emit(trimmedTerm);
     }
   }
 
   onSearchChange(): void {
-    // Cancelar búsqueda anterior si existe
     if (this.searchTimeout) {
       clearTimeout(this.searchTimeout);
     }
 
-    // Esperar 500ms después de que el usuario deje de escribir
+    const trimmedTerm = this.searchTerm.trim();
+
+    if (!trimmedTerm) {
+      this.searchTimeout = null;
+      return;
+    }
+
     this.searchTimeout = setTimeout(() => {
-      if (this.searchTerm.trim()) {
-        this.search.emit(this.searchTerm.trim());
-      }
+      this.search.emit(trimmedTerm);
+      this.searchTimeout = null;
     }, 500);
   }
 

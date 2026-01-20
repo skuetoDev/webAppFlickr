@@ -1,4 +1,4 @@
-import { Component, EventEmitter, HostListener, Input, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, Input, Output, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Button } from "../button/button";
 import { FlickrPhotoInfo } from '../../models/Photo';
@@ -9,7 +9,7 @@ import { FlickrPhotoInfo } from '../../models/Photo';
   templateUrl: './photo-modal.html',
   styleUrl: './photo-modal.css',
 })
-export class PhotoModal {
+export class PhotoModal implements OnChanges {
   @Input() isOpen = false;
   @Input() photoInfo: FlickrPhotoInfo | null = null;
   @Input() loading = false;
@@ -17,6 +17,18 @@ export class PhotoModal {
   @Output() onClose = new EventEmitter<void>();
 
   imageLoaded = false;
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['isOpen']) {
+      if (this.isOpen) {
+        // Bloquear scroll del body
+        document.body.style.overflow = 'hidden';
+      } else {
+        // Restaurar scroll del body
+        document.body.style.overflow = '';
+      }
+    }
+  }
 
   @HostListener('document:keydown.escape')
   onEscapeKey(): void {

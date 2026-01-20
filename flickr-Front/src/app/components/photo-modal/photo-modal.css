@@ -11,6 +11,8 @@
   padding: 20px;
   background-color: rgba(0, 0, 0, 0.4);
   animation: fadeIn 0.25s ease forwards;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 @keyframes fadeIn {
@@ -33,7 +35,14 @@
 @media (max-width: 768px) {
   .modal-container {
     flex-direction: column;
-    max-height: 95vh;
+    max-height: none;
+    height: auto;
+    margin: auto;
+  }
+
+  .modal-overlay {
+    padding: 0;
+    align-items: flex-start;
   }
 }
 
@@ -125,6 +134,7 @@
   padding: 30px;
   overflow-y: auto;
   border-left: 1px solid #30363d;
+  -webkit-overflow-scrolling: touch;
 }
 
 @media (max-width: 768px) {
@@ -133,6 +143,8 @@
     border-left: none;
     border-top: 1px solid #30363d;
     padding: 24px;
+    overflow-y: visible;
+    max-height: none;
   }
 }
 

@@ -8,10 +8,9 @@
       type="text"
       class="search-input"
       [(ngModel)]="searchTerm"
+      (input)="onSearchChange()"
       name="search"
       placeholder="Buscar "
-      (ngModelChange)="onSearchChange()"
-      (keyup.enter)="onSubmit()"
     />
 
     @if (searchTerm) {
