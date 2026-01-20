@@ -1,13 +1,12 @@
 <button
-      [type]="type"
-      [class]="buttonClasses"
-      [disabled]="disabled || loading"
-      (click)="onClick.emit($event)"
-    >
-      <span class="button-content" [class.loading]="loading">
-        <ng-content></ng-content>
-      </span>
-      @if (loading) {
-        <span class="loader"></span>
-      }
-    </button>
+  [type]="type"
+  [class]="buttonClasses"
+  [disabled]="disabled || loading"
+  (click)="onClick.emit($event)"
+>
+  @if (loading) {
+    <span class="loader"></span>
+  } @else {
+    <ng-content></ng-content>
+  }
+</button>

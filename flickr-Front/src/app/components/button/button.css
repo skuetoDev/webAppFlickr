@@ -1,3 +1,5 @@
+
+
 /* Base del botón */
 button {
   display: inline-flex;
@@ -11,6 +13,7 @@ button {
   cursor: pointer;
   transition: all 0.15s ease;
   position: relative;
+  vertical-align: middle;
 }
 
 button:disabled {
@@ -18,35 +21,28 @@ button:disabled {
   cursor: not-allowed;
 }
 
-button:focus-visible {
-  outline: 2px solid #0063dc;
-  outline-offset: 2px;
-}
-
-/* Tamaños */
 .size-sm {
   padding: 6px 12px;
-  font-size: 0.813rem;
+  font-size: 13px;
 }
 
 .size-md {
-  padding: 10px 18px;
-  font-size: 0.875rem;
+  padding: 9px 18px;
+  font-size: 14px;
 }
 
 .size-lg {
   padding: 14px 24px;
-  font-size: 1rem;
+  font-size: 16px;
 }
 
-/* Variantes */
 .variant-primary {
-  background-color: #0063dc;
-  color: white;
+  background-color: #0051b5;
+  color: rgb(226, 226, 226);
 }
 
 .variant-primary:hover:not(:disabled) {
-  background-color: #0051b5;
+  background-color: #0063dc;
 }
 
 .variant-secondary {
@@ -57,7 +53,6 @@ button:focus-visible {
 
 .variant-secondary:hover:not(:disabled) {
   background-color: #21262d;
-  border-color: #8b949e;
 }
 
 .variant-ghost {
@@ -78,7 +73,6 @@ button:focus-visible {
   background-color: #b62324;
 }
 
-/* Contenido del botón */
 .button-content {
   display: flex;
   align-items: center;
@@ -89,7 +83,6 @@ button:focus-visible {
   visibility: hidden;
 }
 
-/* Loader */
 .loader {
   position: absolute;
   width: 16px;
@@ -106,7 +99,6 @@ button:focus-visible {
   }
 }
 
-/* Full width */
 .full-width {
   width: 100%;
 }
