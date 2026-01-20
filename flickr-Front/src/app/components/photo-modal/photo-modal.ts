@@ -1,5 +1,5 @@
-import { Component, EventEmitter, HostListener, Input, Output, OnChanges, SimpleChanges } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, EventEmitter, HostListener, Input, Output, OnChanges, SimpleChanges, Inject, PLATFORM_ID } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { Button } from "../button/button";
 import { FlickrPhotoInfo } from '../../models/Photo';
 
@@ -17,14 +17,17 @@ export class PhotoModal implements OnChanges {
   @Output() onClose = new EventEmitter<void>();
 
   imageLoaded = false;
+  private isBrowser: boolean;
+
+  constructor(@Inject(PLATFORM_ID) platformId: Object) {
+    this.isBrowser = isPlatformBrowser(platformId);
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['isOpen']) {
+    if (changes['isOpen'] && this.isBrowser) {
       if (this.isOpen) {
-        // Bloquear scroll del body
         document.body.style.overflow = 'hidden';
       } else {
-        // Restaurar scroll del body
         document.body.style.overflow = '';
       }
     }
@@ -49,8 +52,9 @@ export class PhotoModal implements OnChanges {
   }
 
   downloadPhoto(): void {
-    if (this.photoInfo?.downloadUrl) {
-      window.open(this.photoInfo.downloadUrl, '_blank');
-    }
+    if (!this.isBrowser || !this.photoInfo?.id) return;
+
+    // Descargar a traves backend
+    window.open(`http://localhost:8080/api/images/${this.photoInfo.id}/download`, '_blank');
   }
 }

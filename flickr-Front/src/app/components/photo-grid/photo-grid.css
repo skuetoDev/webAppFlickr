@@ -34,17 +34,20 @@
   width: 80px;
   height: 80px;
   margin-bottom: 24px;
-  opacity: 0.5;
+  color:#0967E7;
 }
 
 .empty-state h3,
 .initial-state h3 {
   font-size: 20px;
-  font-weight: 500;
-  color: #f0f6fc;
+  color: #8b949e;
+  font-weight: 600;
   margin-bottom: 8px;
 }
-
+.initial-state p {
+  color:#0967E7;
+  font-weight: 600;;
+}
 .empty-state p,
 .initial-state p {
   font-size: 15px;
