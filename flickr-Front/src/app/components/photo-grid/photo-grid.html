@@ -1,1 +1,58 @@
-<p>photo-grid works!</p>
+<div class="grid-container">
+      <!-- Estado vacío -->
+      @if (!loading() && photos().length === 0 && hasSearched()) {
+        <div class="empty-state">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="empty-icon">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+            <circle cx="8.5" cy="8.5" r="1.5"/>
+            <polyline points="21,15 16,10 5,21"/>
+          </svg>
+          <h3>No se encontraron imágenes</h3>
+          <p>Intenta con otro término de búsqueda</p>
+        </div>
+      }
+
+      <!-- Estado inicial -->
+      @if (!loading() && photos().length === 0 && !hasSearched()) {
+        <div class="initial-state">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="initial-icon">
+            <circle cx="11" cy="11" r="8"/>
+            <path d="M21 21l-4.35-4.35"/>
+          </svg>
+          <h3>Busca tus imágenes favoritas</h3>
+          <p>Escribe un término en el buscador para comenzar</p>
+        </div>
+      }
+
+      <!-- Grid de fotos -->
+      @if (photos().length > 0) {
+        <div class="photo-grid">
+          @for (photo of photos(); track photo.id) {
+            <app-photo-card
+              [photo]="photo"
+              (openPhoto)="onOpenPhoto.emit($event)"
+              class="grid-item"
+            ></app-photo-card>
+          }
+        </div>
+      }
+
+      <!-- Loader -->
+      @if (loading()) {
+        <div class="loader-container">
+          <div class="loader">
+            <div class="loader-dot"></div>
+            <div class="loader-dot"></div>
+            <div class="loader-dot"></div>
+          </div>
+          <p>Cargando imágenes...</p>
+        </div>
+      }
+
+      <!-- Indicador de fin -->
+      @if (!loading() && !hasMore() && photos().length > 0) {
+        <div class="end-message">
+          <p>Has llegado al final</p>
+        </div>
+      }
+    </div>
