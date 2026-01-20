@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FlickrPhoto } from '../../models/Photo';
-import { Button } from "../button/button";
+import { Button } from '../button/button';
 
 @Component({
   selector: 'app-photo-card',

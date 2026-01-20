@@ -1,5 +1,5 @@
 import { Component, Input, input, output } from '@angular/core';
-import { PhotoCard } from "../photo-card/photo-card";
+import { PhotoCard } from '../photo-card/photo-card';
 import { FlickrPhoto } from '../../models/Photo';
 
 @Component({
