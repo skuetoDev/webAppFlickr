@@ -2,12 +2,13 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { FlickrPhoto, FlickrPhotoInfo } from '../models/Photo';
+import { environment } from '../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FlickrService {
-  private readonly API_URL = 'http://localhost:8080/api/images';
+  private readonly API_URL = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 

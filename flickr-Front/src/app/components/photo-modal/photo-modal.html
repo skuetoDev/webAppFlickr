@@ -1,0 +1,106 @@
+@if (isOpen) {
+<div class="modal-overlay" (click)="onOverlayClick($event)">
+  <div class="modal-container" role="dialog" aria-modal="true">
+    <!-- Botón cerrar -->
+    <button class="close-button" (click)="close()" aria-label="Cerrar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M18 6L6 18M6 6l12 12"/>
+      </svg>
+    </button>
+
+    <!-- Contenido con datos -->
+    @if (photoInfo && !loading) {
+    <div class="modal-content">
+      <!-- Imagen -->
+      <div class="image-section">
+        <img
+          [src]="photoInfo.imageUrl"
+          [alt]="photoInfo.title"
+          class="modal-image"
+          (load)="imageLoaded = true"
+          [class.loaded]="imageLoaded"
+        />
+        @if (!imageLoaded) {
+        <div class="image-loader">
+          <div class="spinner"></div>
+        </div>
+        }
+      </div>
+
+      <!-- Info -->
+      <div class="info-section">
+        <h2 class="photo-title">{{ photoInfo.title || 'Sin título' }}</h2>
+
+        <div class="info-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+          <span>{{ photoInfo.author || 'Desconocido' }}</span>
+        </div>
+
+        @if (photoInfo.width && photoInfo.height) {
+        <div class="info-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+          </svg>
+          <span>{{ photoInfo.width }} x {{ photoInfo.height }} px</span>
+        </div>
+        }
+
+        @if (photoInfo.description) {
+        <div class="description">
+          <h4>Descripción</h4>
+          <p [innerHTML]="photoInfo.description"></p>
+        </div>
+        }
+
+        @if (photoInfo.tags && photoInfo.tags.length > 0) {
+        <div class="tags">
+          <h4>Etiquetas</h4>
+          <div class="tags-list">
+            @for (tag of photoInfo.tags; track tag) {
+            <span class="tag">{{ tag }}</span>
+            }
+          </div>
+        </div>
+        }
+
+        <!-- Acciones -->
+        <div class="actions">
+          <app-button
+            variant="primary"
+            size="md"
+            [fullWidth]="true"
+            (onClick)="downloadPhoto()"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-icon">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="7,10 12,15 17,10"/>
+              <line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            Descargar imagen
+          </app-button>
+          <app-button
+            variant="secondary"
+            size="md"
+            [fullWidth]="true"
+            (onClick)="close()"
+          >
+            Cerrar
+          </app-button>
+        </div>
+      </div>
+    </div>
+    }
+
+    <!-- Estado de carga -->
+    @if (loading) {
+    <div class="loading-state">
+      <div class="spinner"></div>
+      <p>Cargando información de la foto...</p>
+    </div>
+    }
+  </div>
+</div>
+}

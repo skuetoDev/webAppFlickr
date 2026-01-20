@@ -10,6 +10,7 @@
       [(ngModel)]="searchTerm"
       name="search"
       placeholder="Buscar "
+      (ngModelChange)="onSearchChange()"
       (keyup.enter)="onSubmit()"
     />
 

@@ -1,1 +1,22 @@
-<p>home works!</p>
+<div class="home-page">
+      <app-header (search)="handleSearch($event)"></app-header>
+
+      
+      <main class="main-content container">
+        <app-photo-grid
+          [photos]="photos"
+          [loading]="loading"
+          [hasMore]="hasMore"
+          [hasSearched]="hasSearched"
+          (onOpenPhoto)="openPhotoModal($event)"
+          (onLoadMore)="loadMorePhotos()"
+        ></app-photo-grid>
+      </main>
+      <app-photo-modal
+        [isOpen]="isModalOpen"
+        [photoInfo]="selectedPhotoInfo"
+        [loading]="modalLoading"
+        (onClose)="closeModal()"
+      ></app-photo-modal>
+      
+    </div>
