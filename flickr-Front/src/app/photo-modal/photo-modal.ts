@@ -1,7 +1,18 @@
-import { Component, EventEmitter, HostListener, Input, Output, OnChanges, SimpleChanges, Inject, PLATFORM_ID } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  HostListener,
+  Input,
+  Output,
+  OnChanges,
+  SimpleChanges,
+  Inject,
+  PLATFORM_ID,
+} from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { Button } from "../button/button";
-import { FlickrPhotoInfo } from '../../models/Photo';
+import { Button } from '../components/button/button';
+import { FlickrPhotoInfo } from '../models/Photo';
+import { environment } from '../../environments/environment.development';
 
 @Component({
   selector: 'app-photo-modal',
@@ -15,6 +26,7 @@ export class PhotoModal implements OnChanges {
   @Input() loading = false;
 
   @Output() onClose = new EventEmitter<void>();
+  @Output() onDelete = new EventEmitter<string>();
 
   imageLoaded = false;
   private isBrowser: boolean;
@@ -55,6 +67,6 @@ export class PhotoModal implements OnChanges {
     if (!this.isBrowser || !this.photoInfo?.id) return;
 
     // Descargar a traves backend
-    window.open(`http://localhost:8080/api/images/${this.photoInfo.id}/download`, '_blank');
+    window.open(`${environment.apiUrl}/${this.photoInfo.id}/download`, '_blank');
   }
 }

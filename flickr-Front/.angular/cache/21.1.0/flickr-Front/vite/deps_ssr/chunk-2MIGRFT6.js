@@ -1,7 +1,7 @@
 import { createRequire } from 'module';const require = createRequire(import.meta.url);
 import {
   PlatformLocation
-} from "./chunk-KMK2TFKI.js";
+} from "./chunk-YWFYUUOM.js";
 import {
   Attribute,
   ChangeDetectorRef,
@@ -46,7 +46,6 @@ import {
   numberAttribute,
   performanceMarkFeature,
   registerLocaleData,
-  require_cjs,
   setClassMetadata,
   stringify,
   untracked,
@@ -61,7 +60,10 @@ import {
   ɵɵinject,
   ɵɵinjectAttribute,
   ɵɵstyleProp
-} from "./chunk-V2F66NLX.js";
+} from "./chunk-LH6ISMOG.js";
+import {
+  require_cjs
+} from "./chunk-O5J3CNTX.js";
 import {
   __spreadProps,
   __spreadValues,
@@ -4435,4 +4437,4 @@ export {
   PRECONNECT_CHECK_BLOCKLIST,
   NgOptimizedImage
 };
-//# sourceMappingURL=chunk-AGAERRO6.js.map
+//# sourceMappingURL=chunk-2MIGRFT6.js.map

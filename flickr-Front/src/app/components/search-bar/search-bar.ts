@@ -28,24 +28,6 @@ export class SearchBar {
     }
   }
 
-  onSearchChange(): void {
-    if (this.searchTimeout) {
-      clearTimeout(this.searchTimeout);
-    }
-
-    const trimmedTerm = this.searchTerm.trim();
-
-    if (!trimmedTerm) {
-      this.searchTimeout = null;
-      return;
-    }
-
-    this.searchTimeout = setTimeout(() => {
-      this.search.emit(trimmedTerm);
-      this.searchTimeout = null;
-    }, 500);
-  }
-
   clearSearch(): void {
     this.searchTerm = '';
   }

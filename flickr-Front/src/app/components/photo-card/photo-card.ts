@@ -23,4 +23,5 @@ export class PhotoCard {
     img.src = 'https://via.placeholder.com/400x300?text=Image+Not+Found';
     this.imageLoaded = true;
   }
+  
 }

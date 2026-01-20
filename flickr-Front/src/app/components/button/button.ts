@@ -21,6 +21,11 @@ export class Button {
   @Input() fullWidth = false;
 
   @Output() onClick = new EventEmitter<MouseEvent>();
+  
+  handleClick(event: MouseEvent): void {
+    
+    this.onClick.emit();
+  }
 
   get buttonClasses(): string {
     return [`variant-${this.variant}`, `size-${this.size}`, this.fullWidth ? 'full-width' : '']
