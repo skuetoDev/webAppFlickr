@@ -1,5 +1,8 @@
 import { createRequire } from 'module';const require = createRequire(import.meta.url);
 import {
+  Title
+} from "./chunk-W5H53HXF.js";
+import {
   HashLocationStrategy,
   LOCATION_INITIALIZED,
   Location,
@@ -9,9 +12,8 @@ import {
   PathLocationStrategy,
   PlatformLocation,
   PlatformNavigation,
-  Title,
   ViewportScroller
-} from "./chunk-6CF2CMMX.js";
+} from "./chunk-EDANGH62.js";
 import {
   APP_BOOTSTRAP_LISTENER,
   ApplicationRef,
@@ -5802,4 +5804,4 @@ export {
   mapToResolve,
   VERSION
 };
-//# sourceMappingURL=chunk-L6JSAFR7.js.map
+//# sourceMappingURL=chunk-WZA2NI2P.js.map
