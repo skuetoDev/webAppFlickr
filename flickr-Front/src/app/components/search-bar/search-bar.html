@@ -1,4 +1,4 @@
-<form class="search-container" (ngSubmit)="onSubmit()">
+<div class="search-container">
   <div class="search-input-wrapper">
     <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
       <circle cx="11" cy="11" r="8"/>
@@ -8,10 +8,9 @@
       type="text"
       class="search-input"
       [(ngModel)]="searchTerm"
-      name="search"
-      placeholder="Buscar "
+      placeholder="Buscar"
+      (keyup.enter)="doSearch()"
     />
-
     @if (searchTerm) {
       <button 
         type="button" 
@@ -24,7 +23,7 @@
       </button>
     }
   </div>
-  <app-button type="submit" variant="primary" size="md">
+  <app-button variant="primary" size="md" (onClick)="doSearch()">
     Buscar
   </app-button>
-</form>
+</div>

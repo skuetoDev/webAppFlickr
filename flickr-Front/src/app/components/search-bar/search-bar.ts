@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-import { Button } from '../button/button';
+import { Component, EventEmitter, Output, NgZone, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Button } from '../button/button';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -9,20 +9,18 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './search-bar.html',
   styleUrl: './search-bar.css',
 })
-export class SearchBar {
+export class SearchBar implements AfterViewInit {
   searchTerm = '';
-  private searchTimeout: any;
+  private isReady = false;
 
   @Output() search = new EventEmitter<string>();
 
-  onSubmit(): void {
-    if (this.searchTimeout) {
-      clearTimeout(this.searchTimeout);
-      this.searchTimeout = null;
-    }
+  ngAfterViewInit(): void {
+    this.isReady = true;
+  }
 
+  doSearch(): void {
     const trimmedTerm = this.searchTerm.trim();
-
     if (trimmedTerm) {
       this.search.emit(trimmedTerm);
     }

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { Header } from '../../components/header/header';
@@ -30,7 +30,10 @@ export class Home implements OnInit, OnDestroy {
 
   private photosSubscription?: Subscription;
 
-  constructor(private flickrService: FlickrService) {}
+  constructor(
+    private flickrService: FlickrService,
+    private cdr: ChangeDetectorRef,
+  ) {}
 
   ngOnInit(): void {
     // Suscribirse a los cambios de fotos
@@ -44,42 +47,48 @@ export class Home implements OnInit, OnDestroy {
   }
 
   async handleSearch(query: string): Promise<void> {
-     console.log('1. handleSearch called with:', query);
-    
+    console.log('1. handleSearch called with:', query);
+
+    if (query === this.currentQuery && !this.loading && this.photos.length > 0) {
+      return;
+    }
+
+    if (this.loading) {
+      return;
+    }
 
     this.currentQuery = query;
     this.currentPage = 1;
     this.hasMore = true;
     this.hasSearched = true;
-     console.log('3. Calling loadPhotos');
+
+    // Forzar detección de cambios
+    this.cdr.detectChanges();
+
     await this.loadPhotos(true);
   }
 
   async loadPhotos(reset: boolean = false): Promise<void> {
-    if (this.loading || !this.currentQuery) {
-      console.log('5. Skipping - loading or no query');
-      return;
-    }
+    if (this.loading || !this.currentQuery) return;
+
     this.loading = true;
-    console.log('6. Starting fetch');
+    this.cdr.detectChanges();
 
     try {
-      console.log('4. loadPhotos called, loading:', this.loading, 'query:', this.currentQuery);
       const photos = await this.flickrService.searchPhotos(
         this.currentQuery,
         this.currentPage,
         this.perPage,
         reset,
       );
-      console.log('7. Photos received:', photos.length);
+
       this.hasMore = photos.length >= this.perPage;
     } catch (error) {
-      console.error('Error cargando fotos:', error);
-      console.error('8. Error:', error);
+      console.error('Error:', error);
       this.hasMore = false;
     } finally {
       this.loading = false;
-      console.log('9. Loading finished');
+      this.cdr.detectChanges();
     }
   }
 
