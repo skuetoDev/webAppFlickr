@@ -25,6 +25,7 @@
   transform: scale(1.05);
 }
 
+
 .photo-wrapper {
   position: relative;
   overflow: hidden;
@@ -52,7 +53,27 @@
   gap: 10px;
   background-color: rgba(0, 0, 0, 0.5);
   opacity: 0;
+  pointer-events: none;
   transition: opacity 0.25s ease;
+}
+
+
+.photo-card.active .photo-overlay {
+  opacity: 1;
+}
+
+/* En móvil, los botones solo son clickeables cuando el overlay es completamente visible */
+@media (max-width: 768px) {
+  .photo-card.active .photo-overlay {
+    pointer-events: auto;
+  }
+}
+
+/* En desktop, los botones son clickeables al hacer hover */
+@media (min-width: 769px) {
+  .photo-card:hover .photo-overlay {
+    pointer-events: auto;
+  }
 }
 
 .btn-icon {

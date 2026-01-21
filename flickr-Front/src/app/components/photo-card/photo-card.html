@@ -1,4 +1,7 @@
-<article class="photo-card" [class.loaded]="imageLoaded">
+<article class="photo-card" 
+[class.loaded]="imageLoaded"
+ [class.active]="isActive"
+  (click)="onCardClick()">
       <div class="photo-wrapper" >
         <img
           [src]="photo.thumbnailUrl || photo.imageUrl"
@@ -20,15 +23,15 @@
             Abrir
           </app-button>
           <app-button 
-        variant="danger" 
-        size="md"
-        (onClick)="onDeleteClick()"
-      >
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-icon">
-          <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
-        </svg>
-        Eliminar
-      </app-button>
+            variant="danger" 
+            size="md"
+            (onClick)="onDeleteClick()"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-icon">
+              <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+            </svg>
+            Eliminar
+          </app-button>
         </div>
       </div>
       <div class="photo-info">

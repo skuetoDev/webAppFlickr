@@ -136,4 +136,5 @@ export class Home implements OnInit{
     this.flickrService.deletePhoto(id);
     this.closeModal();
   }
+
 }
