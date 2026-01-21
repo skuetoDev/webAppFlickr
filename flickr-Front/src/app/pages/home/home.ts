@@ -45,8 +45,7 @@ export class Home implements OnInit{
  
 
   async handleSearch(query: string): Promise<void> {
-    console.log('1. handleSearch called with:', query);
-
+    
     if (query === this.currentQuery && !this.loading && this.photos.length > 0) {
       return;
     }
