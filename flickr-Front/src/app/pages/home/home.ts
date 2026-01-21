@@ -101,6 +101,7 @@ export class Home implements OnInit{
     this.isModalOpen = true;
     this.modalLoading = true;
     this.selectedPhotoInfo = null;
+    this.cdr.detectChanges();
     
 
     try {
@@ -121,6 +122,7 @@ export class Home implements OnInit{
       };
     } finally {
       this.modalLoading = false;
+      this.cdr.detectChanges();
     }
   }
 
