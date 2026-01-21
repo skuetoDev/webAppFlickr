@@ -11,6 +11,7 @@ import { Button } from '../button/button';
 export class PhotoCard {
   @Input({ required: true }) photo!: FlickrPhoto;
   @Output() openPhoto = new EventEmitter<FlickrPhoto>();
+  @Output() deletePhoto = new EventEmitter<string>();
 
   imageLoaded = false;
 
@@ -23,5 +24,7 @@ export class PhotoCard {
     img.src = 'https://via.placeholder.com/400x300?text=Image+Not+Found';
     this.imageLoaded = true;
   }
-  
+  onDeleteClick(): void {
+    this.deletePhoto.emit(this.photo.id);
+  }
 }

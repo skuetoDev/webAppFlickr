@@ -10,9 +10,9 @@ import {
   PLATFORM_ID,
 } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { Button } from '../components/button/button';
-import { FlickrPhotoInfo } from '../models/Photo';
-import { environment } from '../../environments/environment.development';
+import { Button } from '../button/button';
+import { FlickrPhotoInfo } from '../../models/Photo';
+import { environment } from '../../../environments/environment.development';
 
 @Component({
   selector: 'app-photo-modal',

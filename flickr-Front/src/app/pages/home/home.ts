@@ -1,9 +1,9 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { Header } from '../../components/header/header';
 import { PhotoGrid } from '../../components/photo-grid/photo-grid';
-import { PhotoModal } from '../../photo-modal/photo-modal';
+import { PhotoModal } from '../../components/photo-modal/photo-modal';
 import { FlickrService } from '../../services/flickr.service';
 import { FlickrPhoto, FlickrPhotoInfo } from '../../models/Photo';
 
@@ -13,11 +13,12 @@ import { FlickrPhoto, FlickrPhotoInfo } from '../../models/Photo';
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
-export class Home implements OnInit, OnDestroy {
+export class Home implements OnInit{
   photos: FlickrPhoto[] = [];
   loading = false;
   hasMore = true;
   hasSearched = false;
+  private photosSubscription?: Subscription;
 
   currentQuery = '';
   currentPage = 1;
@@ -28,7 +29,6 @@ export class Home implements OnInit, OnDestroy {
   selectedPhotoInfo: FlickrPhotoInfo | null = null;
   modalLoading = false;
 
-  private photosSubscription?: Subscription;
 
   constructor(
     private flickrService: FlickrService,
@@ -42,9 +42,7 @@ export class Home implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy(): void {
-    this.photosSubscription?.unsubscribe();
-  }
+ 
 
   async handleSearch(query: string): Promise<void> {
     console.log('1. handleSearch called with:', query);
@@ -103,9 +101,11 @@ export class Home implements OnInit, OnDestroy {
     this.isModalOpen = true;
     this.modalLoading = true;
     this.selectedPhotoInfo = null;
+    
 
     try {
       this.selectedPhotoInfo = await this.flickrService.getPhotoInfo(photo.id);
+      this.cdr.detectChanges();
     } catch (error) {
       console.error('Error cargando info de foto:', error);
       this.selectedPhotoInfo = {

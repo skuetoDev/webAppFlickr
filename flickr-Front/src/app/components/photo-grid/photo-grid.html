@@ -31,6 +31,7 @@
             <app-photo-card
               [photo]="photo"
               (openPhoto)="onOpenPhoto.emit($event)"
+              (deletePhoto)="onDeletePhoto.emit($event)"
               class="grid-item"
             ></app-photo-card>
           }

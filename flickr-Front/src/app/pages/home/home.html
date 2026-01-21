@@ -1,7 +1,5 @@
 <div class="home-page">
       <app-header (search)="handleSearch($event)"></app-header>
-
-      
       <main class="main-content container">
         <app-photo-grid
           [photos]="photos"
@@ -9,6 +7,7 @@
           [hasMore]="hasMore"
           [hasSearched]="hasSearched"
           (onOpenPhoto)="openPhotoModal($event)"
+          (onDeletePhoto)="deletePhoto($event)"
           (onLoadMore)="loadMorePhotos()"
         ></app-photo-grid>
       </main>
